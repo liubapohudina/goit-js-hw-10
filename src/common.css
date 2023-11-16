@@ -1,13 +1,20 @@
 body {
     background-color: rgb(204, 192, 192);
     padding: 50px 50px;
+    max-width: 1440px;
+    padding: 20px 30px;
+    height: 100vh;
+}
+:root {
+    --primary-font: "Nunito", sans-serif;
+    --color-text: rgb(75, 70, 70);
 }
 
 .is-hidden {
     visibility: hidden;
 }
 .loader-text {
-    color: rgb(76, 76, 177);
+    color: rgb(95, 95, 128);
     font-size: 36px;
     margin-top: 20px;
 }
@@ -27,14 +34,14 @@ body {
     position: absolute;
     inset: 0px;
     border-radius: 50%;
-    border: 5px solid #FFF;
+    border: 5px solid #d1b0b0;
     animation: prixClipFix 2s linear infinite;
 }
 
 .loader::after {
     inset: 8px;
     transform: rotate3d(90, 90, 0, 180deg);
-    border-color: rgb(76, 76, 177);
+    border-color: rgb(95, 95, 128);
 }
 
 @keyframes rotate {
@@ -60,4 +67,33 @@ body {
     100% {
         clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
     }
+}
+.cat-info {
+   margin: 60px auto;
+   display: flex;
+   justify-content: center;
+   align-items: end;
+   gap: 20px;
+   max-width: 800px;
+   
+}
+.breed-select {
+    margin: 0 auto;
+    max-width: 500px;
+    font-family: var(--primary-font);
+    font-size: 24px;
+}
+.img-cat {
+    font-family: var(--primary-font);
+    font-size: 36px;
+    color: var(--color-text);
+}
+img {
+    margin-top: 20px;
+    border-radius: 10px;
+}
+.cat-descr {
+    font-family: var(--primary-font);
+    font-size: 20px;
+    color: var(--color-text);
 }

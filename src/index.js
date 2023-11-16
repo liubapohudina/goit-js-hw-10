@@ -23,10 +23,11 @@ refs.select.addEventListener('change', handleChange);
 function handleChange(event) {
   const breedId = event.currentTarget.value;
   refs.loader.classList.replace('is-hidden', 'loader')
-   refs.loaderText.classList.replace('is-hidden', 'loader-text')
+  refs.loaderText.classList.replace('is-hidden', 'loader-text')
+  refs.catInfo.classList.add('is-hidden')
   fetchCatByBreed(breedId)
     .then((data) => {
-      //refs.select.classList.add('is-hidden')
+      refs.catInfo.classList.remove('is-hidden')
       refs.loader.classList.replace('loader', 'is-hidden')
       refs.loaderText.classList.replace('loader-text', 'is-hidden')
       const catInfoMarkup = createMarkupId(data);
@@ -68,11 +69,14 @@ function createMarkup(arrBreeds) {
 
 function createMarkupId(selectCat) {
   return selectCat.map((arr) => `
-    <div class="box-cat">
+    <div class="img-cat"
       <h1>${arr.breeds[0].name}</h1>
       <img src=${arr.url} alt=${arr.breeds[0].name} width='400'/>
+      </div>
+      <div class="cat-descr"
       <p>${arr.breeds[0].description}</p>
       <p>${arr.breeds[0].temperament}</p>
-    </div>
+      </div>
   `).join("");
 }
+  
