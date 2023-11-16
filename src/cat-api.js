@@ -6,7 +6,15 @@ export function fetchBreeds() {
       return response.data;
     })
     .catch(error => {
-      console.error(error);
-      throw new Error("Failed to fetch breeds");
+    Notiflix.Notify.failure("Failed to fetch breeds");
     });
 }
+export function fetchCatByBreed(breedId) {
+  return axios.get(`https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`)
+  .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+    Notiflix.Notify.failure("Failed to fetch breeds");
+    });
+ }
