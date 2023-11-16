@@ -1,4 +1,5 @@
 import { fetchBreeds } from "./cat-api";
+import SlimSelect from 'slim-select'
 import axios from "axios";
 
 axios.defaults.headers.common["x-api-key"] = "live_tfbjb8mOO5HvJSjWsGTwQbKurUPD8h8qvYPkqHt8O6bq14XijBFdlAlosbq3JsVv";
@@ -6,41 +7,38 @@ axios.defaults.headers.common["x-api-key"] = "live_tfbjb8mOO5HvJSjWsGTwQbKurUPD8
 const refs = {
   select: document.querySelector('.breed-select'),
   loader: document.querySelector('.loader'),
-  loaderText: document.querySelector('loader-text'),
+  loaderText: document.querySelector('.loader-text'),
   error: document.querySelector('.error'),
   catInfo: document.querySelector('.cat-info'),
 };
-refs.loader.classList.replace('loader', 'is-hidden');
-refs.loaderText.classList.add('is-hidden');
+refs.select.classList.add('is-hidden')
 refs.error.classList.add('is-hidden')
+refs.loader.classList.replace('is-hidden', 'loader')
+refs.loaderText.classList.replace('is-hidden', 'loader')
+//refs.select.addEventListener('change', handleChange)
+//function handleChange(event) {
+ // fetchBreeds().then(({ name, value: id }) => {
+   // refs.select.innerHTML = createMarkup(name, value)
+  //})
+//}
+  
+fetchBreeds()
+  .then((initialBreeds) => {
+    arrBreeds = initialBreeds.map(({ name, id }) => ({ name, value: id }));
+    refs.select.innerHTML = createMarkup(arrBreeds)
+   new SlimSelect({
+  select: refs.select
+})
+    refs.select.classList.remove('is-hidden')
+    refs.loader.classList.replace('loader', 'is-hidden')
+    refs.loaderText.classList.replace('loader-text', 'is-hidden')
+  })
+     
+  .catch((error) => {
+    console.error(error);
+  });
 
-refs.select.addEventListener('onload', handleChange);
-
-let arrBreeds = [];
-
-function handleChange(event) {
-  event.preventDefault();
-  refs.select.classList.remove('is-hidden')
-  const selectCat = event.currentTarget.value;
-  fetchBreeds(selectCat)
-    .then((breeds) => {
-      // Assuming breeds is an array of objects with 'name' and 'id' properties
-      arrBreeds = breeds.map(({ name, id }) => ({ name, value: id }));
-
-      // Call your function to update the HTML
-      updateSelectOptions(arrBreeds);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}
-
-function updateSelectOptions(arrBreeds) {
-  const markup = createMarkup(arrBreeds);
-  refs.select.innerHTML = markup;
-}
-
-function createMarkup(arrBreeds) {
+  function createMarkup(arrBreeds) {
   return arrBreeds
     .map(
       (arr) => `
@@ -49,14 +47,3 @@ function createMarkup(arrBreeds) {
     )
     .join("");
 }
-
-// You might want to call fetchBreeds initially to populate the select element when the page loads
-fetchBreeds()
-  .then((initialBreeds) => {
-    arrBreeds = initialBreeds.map(({ name, id }) => ({ name, value: id }));
-      updateSelectOptions(arrBreeds);
-      refs.loader.style = 'none';
-  })
-  .catch((error) => {
-    console.error(error);
-  });
