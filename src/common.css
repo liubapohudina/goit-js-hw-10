@@ -69,7 +69,7 @@ body {
     }
 }
 .cat-info {
-   margin: 60px auto;
+   margin: 20px auto;
    display: flex;
    justify-content: center;
    align-items: end;
