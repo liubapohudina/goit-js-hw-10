@@ -11,11 +11,11 @@
     select: document.querySelector('.breed-select'),
     loader: document.querySelector('.loader'),
     loaderText: document.querySelector('.loader-text'),
-    error: document.querySelector('.error'),
+    //error: document.querySelector('.error'),
     catInfo: document.querySelector('.cat-info'),
   };
 
-  refs.error.classList.add('is-hidden');
+  //refs.error.classList.add('is-hidden');
   refs.loader.classList.replace('is-hidden', 'loader');
   refs.loaderText.classList.replace('is-hidden', 'loader');
   refs.select.addEventListener('change', handleChange);
