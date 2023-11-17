@@ -35,15 +35,17 @@
         refs.loader.classList.replace('loader', 'is-hidden')
         refs.loaderText.classList.replace('loader-text', 'is-hidden')
 
-        
-
         const catInfoMarkup = createMarkupId(data);
         refs.catInfo.innerHTML = catInfoMarkup;
+           if (data.length === 0) {
+          Notiflix.Notify.failure("Failed to fetch cat information");
+        }
       })
       .catch((error) => {
         refs.select.classList.add('is-hidden')
         console.error(error);
         Notiflix.Notify.failure("Failed to fetch cat information");
+     
       });
   }
 

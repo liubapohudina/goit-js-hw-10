@@ -6,7 +6,8 @@ export function fetchBreeds() {
       return response.data;
     })
     .catch(error => {
-    Notiflix.Notify.failure("Failed to fetch breeds");
+      Notiflix.Notify.failure("Failed to fetch breeds");
+      throw error
     });
 }
 export function fetchCatByBreed(breedId) {
@@ -15,6 +16,7 @@ export function fetchCatByBreed(breedId) {
       return response.data;
     })
     .catch(error => {
-    Notiflix.Notify.failure("Failed to fetch breeds");
+      Notiflix.Notify.failure("Failed to fetch breeds");
+      throw error
     });
  }
