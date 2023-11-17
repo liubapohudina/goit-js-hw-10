@@ -100,3 +100,9 @@ img {
     font-size: 20px;
     color: var(--color-text);
 }
+/*----------------adaptive------------------*/
+@media screen and (min-width: 375px) and (max-width: 768px) {
+ .cat-info {
+    flex-wrap: wrap;
+ }
+}
