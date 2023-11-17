@@ -38,11 +38,11 @@
         const catInfoMarkup = createMarkupId(data);
         refs.catInfo.innerHTML = catInfoMarkup;
            if (data.length === 0) {
-          Notiflix.Notify.failure("Failed to fetch cat information");
+          Notiflix.Notify.failure("Failed to fetch cat information.Please, choose another cat.");
         }
       })
       .catch((error) => {
-        refs.select.classList.add('is-hidden')
+        refs.select.classList.remove('is-hidden')
         console.error(error);
         Notiflix.Notify.failure("Failed to fetch cat information");
      
@@ -66,6 +66,7 @@
     })
     .catch((error) => {
       console.error(error);
+      refs.select.classList.remove('is-hidden')
       Notiflix.Notify.failure("Failed to fetch breeds");
     });
 
