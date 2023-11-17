@@ -14,7 +14,7 @@ const refs = {
   catInfo: document.querySelector('.cat-info'),
 };
 
-refs.select.classList.add('is-hidden');
+//refs.select.classList.add('is-hidden');
 refs.error.classList.add('is-hidden');
 refs.loader.classList.replace('is-hidden', 'loader');
 refs.loaderText.classList.replace('is-hidden', 'loader');
