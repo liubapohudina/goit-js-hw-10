@@ -110,4 +110,7 @@ img {
  .cat-info {
     flex-wrap: wrap;
  }
+ .vanta-canvas {
+    width: 100% !important;
+ }
 }
